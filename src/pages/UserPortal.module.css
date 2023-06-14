@@ -1,0 +1,33 @@
+.parentContainer {
+  display: flex;
+  justify-content: center;
+  /* width: 25%;
+  height: 800px; */
+
+}
+
+.container {
+  /* display: flex;
+  flex-direction: column;
+  flex-wrap: wrap; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 80%;
+  margin-top: 100px;
+
+}
+
+@media screen and (max-width: 900px){
+    .container {
+        width: 90%;
+        grid-template-columns: 1fr 1fr 1fr;  
+    }
+}
+
+@media screen and (max-width: 450px){
+    .container {
+        margin-top: 35px;
+        width: 90%;
+        grid-template-columns: 1fr 1fr;  
+    }
+}

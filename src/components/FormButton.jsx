@@ -18,6 +18,8 @@ const Button = (props) => {
     <button
       style={{ backgroundColor: background, color: fontColor }}
       className={classes.button}
+      type={props.type}
+      onClick={props.onClick}
     >
       {props.name}
     </button>

@@ -8,9 +8,10 @@ const Input = (props) => {
     <div className={classes.input}>
       <label htmlFor={props.id}>{props.name}:</label>
       <input
-        type={props.text}
+        type={props.type}
         id={props.id}
         onChange={(e) => props.handler(e.target.value)}
+        value={props.value}
       />
     </div>
   );

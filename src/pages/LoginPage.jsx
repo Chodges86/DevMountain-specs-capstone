@@ -27,7 +27,7 @@ const LoginPage = () => {
     setUsername('')
     setPassword('')
 
-    navigate('/user-portal')
+    navigate('/dash')
   };
 
   const navigateToRegister = () => {

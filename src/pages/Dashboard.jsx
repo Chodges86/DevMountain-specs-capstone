@@ -9,123 +9,62 @@ const DUMMY_PROJECTS = [
     companyName: "Company Name",
     lastDate: "6/9/2023",
     hours: "15:23:30",
+    id: 1,
   },
   {
     projectName: "Project Title",
     companyName: "Company Name",
     lastDate: "6/9/2023",
     hours: "15:23:30",
+    id: 2,
   },
   {
     projectName: "Project Title",
     companyName: "Company Name",
     lastDate: "6/9/2023",
     hours: "15:23:30",
+    id: 3,
   },
   {
     projectName: "Project Title",
     companyName: "Company Name",
     lastDate: "6/9/2023",
     hours: "15:23:30",
+    id: 4,
   },
   {
     projectName: "Project Title",
     companyName: "Company Name",
     lastDate: "6/9/2023",
     hours: "15:23:30",
+    id: 5,
   },
   {
     projectName: "Project Title",
     companyName: "Company Name",
     lastDate: "6/9/2023",
     hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
-  },
-  {
-    projectName: "Project Title",
-    companyName: "Company Name",
-    lastDate: "6/9/2023",
-    hours: "15:23:30",
+    id: 6,
   },
 ];
 
-const UserPortal = () => {
-
-    const calcHeight = (DUMMY_PROJECTS.length / 4) * 200
-
+const Dashboard = () => {
   return (
     <div className={classes.parentContainer}>
-        <div style={{ height: calcHeight }} className={classes.container}>
-      {DUMMY_PROJECTS.map((project) => (
-        <ProjectCard
-          name={project.projectName}
-          companyName={project.companyName}
-          lastDate={project.lastDate}
-          hours={project.hours}
-        />
-      ))}
-    </div>
+      <div className={classes.container}>
+        {DUMMY_PROJECTS.map((project) => (
+          <ProjectCard
+            key={project.id}
+            id={project.id}
+            name={project.projectName}
+            companyName={project.companyName}
+            lastDate={project.lastDate}
+            hours={project.hours}
+          />
+        ))}
+      </div>
     </div>
   );
 };
 
-export default UserPortal;
+export default Dashboard;

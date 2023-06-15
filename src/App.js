@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
 import Register from './pages/RegisterPage';
-import UserPortal from './pages/UserPortal';
+import Dashboard from './pages/Dashboard'
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route index element={<LoginPage/>}/>
         <Route path='register' element={<Register/>}/>
-        <Route path='user-portal' element={<UserPortal/>}/>
+        <Route path='dash' element={<Dashboard/>}/>
         </Routes>
     </div>
   );

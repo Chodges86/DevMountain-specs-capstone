@@ -19,3 +19,27 @@
     font-size: 25px;
     color: white;
 }
+
+.btmHeader {
+    background-color: #D9D9D9;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.btmHeader h1 {
+    font-family: 'Catamaran', sans-serif;
+    margin-right: 10px;
+    margin-block: 0;
+    font-size: 25px;
+    color: #2D4059;
+}
+
+@media screen and (max-width: 900px){
+}
+
+@media screen and (max-width: 400px){
+    .btmHeader h1 {
+        font-size: 18px;
+    }
+}

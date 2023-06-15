@@ -45,7 +45,7 @@
     }
 
 }
-@media screen and (max-width: 450px){
+@media screen and (max-width: 540px){
     .card {
         height: 115px;
         width: 130px;
@@ -61,6 +61,27 @@
     .card h4 {
         margin: 0;
         font-size: 22px;
+        color: #FF5722;
+    }
+
+}
+
+@media screen and (max-width: 300px){
+    .card {
+        height: 90px;
+        width: 105px;
+    }
+    .card h1 {
+        margin: 2px;
+        font-size: 15px;
+    }
+    .card h2 {
+        margin: 2px;
+        font-size: 9px;
+    }
+    .card h4 {
+        margin: 0;
+        font-size: 18px;
         color: #FF5722;
     }
 

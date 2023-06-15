@@ -1,7 +1,7 @@
 import React from "react";
 import ProjectCard from "../components/ProjectCard";
 
-import classes from "./UserPortal.module.css";
+import classes from "./Dashboard.module.css";
 
 const DUMMY_PROJECTS = [
   {

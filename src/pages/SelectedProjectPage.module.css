@@ -1,0 +1,28 @@
+h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 55px;
+}
+
+h2 {
+    font-family: 'Teko', sans-serif;
+    font-size: 40px;
+}
+
+h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 115px;
+    margin: 10px;
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF5722;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

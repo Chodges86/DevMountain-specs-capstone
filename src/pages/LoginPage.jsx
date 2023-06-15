@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import Input from "../components/FormInput";
 import Button from "../components/FormButton";
 
 import classes from "./LoginPage.module.css";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../store/authContext";
 
 const LoginPage = () => {
+  const authCtx = useContext(AuthContext)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -26,7 +28,7 @@ const LoginPage = () => {
     // Set values to empty to clear inputs.
     setUsername('')
     setPassword('')
-
+    authCtx.setIsLoggedIn(true)
     navigate('/dash')
   };
 

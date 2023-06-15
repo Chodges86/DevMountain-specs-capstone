@@ -11,3 +11,26 @@
     font-family: 'Teko', sans-serif;
     font-size: 30px;
 }
+
+@media screen and (max-width: 540px){
+    .input input {
+        width: 70%;
+        height: 2rem;
+        font-size: 18px;
+    }
+    .input label {
+        font-size: 25px;
+    }
+
+}
+
+@media screen and (max-width: 420px){
+    .input input {
+        width: 60%;
+        height: 2rem;
+        font-size: 18px;
+    }
+    .input label {
+        font-size: 25px;
+    }
+}

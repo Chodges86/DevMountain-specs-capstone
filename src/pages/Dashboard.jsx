@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import ProjectCard from "../components/ProjectCard";
+import AuthContext from "../store/authContext";
 
 import classes from "./Dashboard.module.css";
 
@@ -49,6 +51,16 @@ const DUMMY_PROJECTS = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate()
+  const authCtx = useContext(AuthContext)
+  const isLoggedIn = authCtx.isLoggedIn
+  
+  useEffect(()=> {
+    if(!isLoggedIn) {
+      navigate('/')
+    }
+  },[isLoggedIn, navigate])
+
   return (
     <div className={classes.parentContainer}>
       <div className={classes.container}>

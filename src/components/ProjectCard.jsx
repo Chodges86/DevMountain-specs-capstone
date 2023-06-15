@@ -14,7 +14,7 @@ const ProjectCard = (props) => {
     if(didNavigate) {
       navigate('/project')
     }
-  },[didNavigate])
+  },[didNavigate, navigate])
 
   const projectClickedHandler = () => {
     console.log(props.id)

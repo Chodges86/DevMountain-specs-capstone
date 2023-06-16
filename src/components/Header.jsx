@@ -23,7 +23,7 @@ const Header = () => {
         <img src={logo} alt="" />
         {isLoggedIn && (
           <div className={classes.userReadOut}>
-            <h1>Username</h1>
+            <h1>{authCtx.firstName ? authCtx.firstName : "User"}</h1>
             <h2 onClick={logoutHandler}>Logout</h2>
           </div>
         )}

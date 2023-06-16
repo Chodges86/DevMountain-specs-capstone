@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { ImSpinner3 } from "react-icons/im";
+
 import AuthContext from "../store/authContext";
 import Input from "../components/FormInput";
 import Button from "../components/FormButton";
@@ -9,12 +11,14 @@ import Button from "../components/FormButton";
 import classes from "./RegisterPage.module.css";
 
 const Register = () => {
-    const authCtx = useContext(AuthContext)
+  const authCtx = useContext(AuthContext);
+  const [registerError, setRegisterError] = useState();
   const [password, setPassword] = useState("");
   const [re_enterPW, setRe_EnterPW] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,7 +40,7 @@ const Register = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
+    setIsLoading(true)
     const body = {
       email,
       password,
@@ -44,15 +48,24 @@ const Register = () => {
       lastName,
     };
 
+    if (password !== re_enterPW) {
+      setRegisterError("The passwords you entered do not match.");
+      return;
+    }
+
     axios
       .post("http://localhost:4000/register", body)
-      .then(({data}) => {
-        authCtx.setIsLoggedIn(true)
-        authCtx.setUserId(data.user_id)
-        authCtx.setFirstName(data.first_name)
+      .then(({ data }) => {
+        authCtx.setIsLoggedIn(true);
+        authCtx.setUserId(data.user_id);
+        authCtx.setFirstName(data.first_name);
         navigate("/dash");
+        setIsLoading(false)
+      })
+      .catch((err) => {
+        setRegisterError(err.response.data);
+        setIsLoading(false)
       });
-
   };
 
   return (
@@ -94,8 +107,14 @@ const Register = () => {
           value={lastName}
         />
         <div>
-          <Button name="Register" color="blue" type="submit" />
+          <Button
+            name={isLoading ? <ImSpinner3 className={classes.spinner} /> : "Register"}
+            color="blue"
+            type="submit"
+          />
         </div>
+
+        {registerError && <p className={classes.error}>{registerError}</p>}
       </form>
     </div>
   );

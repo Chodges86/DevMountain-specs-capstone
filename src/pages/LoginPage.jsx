@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import { ImSpinner3 } from "react-icons/im";
+
 import AuthContext from "../store/authContext";
 import Input from "../components/FormInput";
 import Button from "../components/FormButton";
@@ -13,6 +15,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const setEmailHandler = (em) => {
@@ -24,7 +27,7 @@ const LoginPage = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     const body = {
       email,
       password,
@@ -32,15 +35,19 @@ const LoginPage = () => {
 
     axios
       .post("http://localhost:4000/login", body)
-      .then((res) => {
-        if (res) {
+      .then(({ data }) => {
+        if (data) {
           authCtx.setIsLoggedIn(true);
+          authCtx.setUserId(data.user_id);
+          authCtx.setFirstName(data.first_name);
           navigate("/dash");
         }
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err.response.data);
-        setLoginError(err.response.data)
+        setLoginError(err.response.data);
+        setIsLoading(false);
       });
 
     // Set values to empty to clear inputs.
@@ -76,7 +83,13 @@ const LoginPage = () => {
             type="button"
             onClick={navigateToRegister}
           />
-          <Button name="Login" color="blue" type="submit" />
+          <Button
+            name={
+              isLoading ? <ImSpinner3 className={classes.spinner} /> : "Login"
+            }
+            color="blue"
+            type="submit"
+          />
         </div>
         {loginError && <p className={classes.error}>{loginError}</p>}
       </form>

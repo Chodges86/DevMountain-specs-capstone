@@ -27,7 +27,11 @@ const ProjectCard = (props) => {
         <h1>{props.name}</h1>
         <h2>{props.companyName}</h2>
         <h2>{props.lastDate}</h2>
-        <h4>{props.hours}</h4>
+        <div className={classes.time}>
+          <h4>{props.hours < 10 ? `0${props.hours} :` : `${props.hours} :`}</h4>
+          <h4>{props.minutes < 10 ? `0${props.minutes} :` : `${props.minutes} :`}</h4>
+          <h4>{props.seconds < 10 ? `0${props.seconds}` : `${props.seconds}`}</h4>
+        </div>
       </div>
 
   );

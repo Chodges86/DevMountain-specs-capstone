@@ -25,6 +25,13 @@
     color: #FF5722;
 }
 
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FF5722;
+}
+
 @media screen and (max-width: 900px){
     .card {
         height: 175px;

@@ -45,8 +45,8 @@ const LoginPage = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        console.log(err.response.data);
-        setLoginError(err.response.data);
+        console.log(err);
+        setLoginError("There was an error retrieving data");
         setIsLoading(false);
       });
 

@@ -1,6 +1,5 @@
 require("dotenv").config({ path: "./../.env" });
 const { CONNECTION_STRING } = process.env;
-console.log(CONNECTION_STRING)
 
 
 const Sequelize = require("sequelize");

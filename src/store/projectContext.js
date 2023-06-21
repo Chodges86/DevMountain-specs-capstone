@@ -2,11 +2,15 @@ import { createContext, useState } from "react";
 
 const ProjectContext = createContext({
     selectedProject: {},
-    setProject: () => {}
+    setProject: () => {}, 
+    isAddingNew: false,
+    setIsAddingNew: () => {}
 })
 
 export const ProjectContextProvider = (props) => {
     const [selectedProject, setSelectedProject] = useState()
+    const [isAddingNew, setIsAddingNew] = useState(false)
+    const [showNewProjBtn, setShowNewProjBtn] = useState(true)
 
     const setProject = (project) => {
         console.log("setProject called")
@@ -15,7 +19,11 @@ export const ProjectContextProvider = (props) => {
 
     const contextValue = {
         selectedProject,
-        setProject
+        setProject,
+        isAddingNew,
+        setIsAddingNew,
+        showNewProjBtn,
+        setShowNewProjBtn
     }
 
     return <ProjectContext.Provider value={contextValue}>

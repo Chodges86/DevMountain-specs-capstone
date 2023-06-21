@@ -63,7 +63,7 @@ const LoginPage = () => {
     <div className={classes.login}>
       <form className={classes.form} onSubmit={submitHandler}>
         <Input
-          name="Username"
+          name="Email"
           id="username"
           type="text"
           handler={setEmailHandler}

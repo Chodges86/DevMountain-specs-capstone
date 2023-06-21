@@ -75,7 +75,7 @@ const Dashboard = () => {
         })
         .catch((err) => console.log(err));
     }
-  });
+  }, [authCtx.userId, isLoggedIn]);
 
   useEffect(() => {
     if (!isLoggedIn) {

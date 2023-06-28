@@ -24,7 +24,8 @@ module.exports = {
       `UPDATE projects
          SET current_seconds = ${seconds}, current_minutes = ${minutes}, current_hours = ${hours}, last_date = '${timestamp}'
          WHERE id = ${id}`
-    );
+    )
+    .then(res.sendStatus(200));
   },
 
   addProject: (req, res) => {

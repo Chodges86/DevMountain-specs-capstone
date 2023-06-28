@@ -1,28 +1,63 @@
 h1 {
-    font-family: 'Teko', sans-serif;
-    font-size: 55px;
+  font-family: "Teko", sans-serif;
+  font-size: 55px;
 }
 
 h2 {
-    font-family: 'Teko', sans-serif;
-    font-size: 40px;
+  font-family: "Teko", sans-serif;
+  font-size: 40px;
 }
 
 h3 {
-    font-family: 'Teko', sans-serif;
-    font-size: 115px;
-    margin: 10px;
+  font-family: "Teko", sans-serif;
+  font-size: 115px;
+  margin: 10px;
 }
 
 .time {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #FF5722;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ff5722;
 }
 
 .buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  font-family: "Teko", sans-serif;
+  font-size: 115px;
+  color: #ff5722;
+}
+
+.form input {
+  font-family: "Teko", sans-serif;
+  font-size: 115px;
+  text-align: center;
+  color: #ff5722;
+  caret-color: transparent;
+  height: fit-content;
+  width: 7rem;
+  border-radius: 15px;
+  border: 1px solid rgb(172, 172, 172)
+}
+
+.form input:focus {
+    outline: none;
+    border:1px solid #ff5722;
+    box-shadow: 0 0 10px rgb(172, 172, 172);
+}
+
+.form input::-webkit-outer-spin-button,
+.form input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.form input[type="number"] {
+  -moz-appearance: textfield;
 }

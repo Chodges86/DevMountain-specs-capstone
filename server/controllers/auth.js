@@ -50,6 +50,12 @@ module.exports = {
 
         if (isPasswordMatch) {
           console.log("Login successful");
+          const userInfo = {
+            email,
+            password
+          }
+          req.session.user = userInfo
+          console.log('After Login',req.session)
           res.status(200).send(response);
         } else {
           console.log("Password incorrect");

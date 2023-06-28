@@ -71,6 +71,10 @@ const Dashboard = () => {
       axios
         .get(`http://localhost:4000/get-all-projects/${authCtx.userId}`)
         .then((res) => {
+          // const dates = res.data.sort((a,b) => {
+          //   Date.parse(b.last_date) - Date.parse(a.last_date)
+          // })
+          // console.log(dates)
           setProjects(res.data);
         })
         .catch((err) => console.log(err));

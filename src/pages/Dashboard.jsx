@@ -75,7 +75,7 @@ const Dashboard = () => {
   // },[])
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && !isAddingNew) {
       axios
         .get(`http://localhost:4000/get-all-projects/${authCtx.userId}`)
         .then((res) => {
@@ -87,7 +87,7 @@ const Dashboard = () => {
         })
         .catch((err) => console.log(err));
     }
-  }, [authCtx.userId, isLoggedIn]);
+  }, [authCtx.userId, isLoggedIn, isAddingNew]);
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -107,6 +107,7 @@ const Dashboard = () => {
       .then((res) => {
         console.log(res.data);
         projectCtx.setIsAddingNew(false);
+        projectCtx.setShowNewProjBtn(true)
       })
       .catch((err) => console.log(err));
   };

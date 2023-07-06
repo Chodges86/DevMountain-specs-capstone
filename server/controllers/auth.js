@@ -34,7 +34,7 @@ module.exports = {
 
   login: (req, res) => {
     const { email, password } = req.body;
-
+    res.header("Access-Control-Allow-Origin", "http://localhost:4001");
     sequelize
       .query(
         `SELECT * FROM users
@@ -50,12 +50,7 @@ module.exports = {
 
         if (isPasswordMatch) {
           console.log("Login successful");
-          const userInfo = {
-            email,
-            password
-          }
-          req.session.user = userInfo
-          console.log('After Login',req.session)
+          
           res.status(200).send(response);
         } else {
           console.log("Password incorrect");
@@ -64,4 +59,14 @@ module.exports = {
       })
       .catch((err) => console.log(err));
   },
+
+  getUser: (req, res) => {
+    const { id } = req.params
+    console.log(id)
+    sequelize.query(`
+    SELECT * FROM users
+    WHERE user_id = ${id}
+    `)
+    .then(dbRes => res.status(200).send(dbRes[0][0]))
+  }
 };

@@ -7,7 +7,7 @@ import { HiOutlinePencil } from "react-icons/hi";
 
 import classes from "./SelectedProjectPage.module.css";
 import Button from "../components/FormButton";
-import { redirect } from "react-router-dom";
+// import { redirect } from "react-router-dom";
 
 const SelectedProject = () => {
   const projCtx = useContext(ProjectContext);

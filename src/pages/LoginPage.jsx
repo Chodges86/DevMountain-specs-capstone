@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 import { ImSpinner3 } from "react-icons/im";
 
@@ -17,10 +18,6 @@ const LoginPage = () => {
   const [loginError, setLoginError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    
-  },[])
 
   const setEmailHandler = (em) => {
     setEmail(em);
@@ -44,6 +41,8 @@ const LoginPage = () => {
           authCtx.setIsLoggedIn(true);
           authCtx.setUserId(data.user_id);
           authCtx.setFirstName(data.first_name);
+
+          Cookies.set("bth_uid", `${data.user_id}`, { expires: 1 / 24 });
           navigate("/dash");
         }
         setIsLoading(false);

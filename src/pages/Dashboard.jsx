@@ -66,6 +66,14 @@ const Dashboard = () => {
 
   const { isAddingNew } = projectCtx;
 
+  // console.log(document.cookie)
+
+  // useEffect(() => {
+  //   axios
+  //   .get("http://localhost:4000/check-login")
+  //   .then(res => console.log(res.data))
+  // },[])
+
   useEffect(() => {
     if (isLoggedIn) {
       axios

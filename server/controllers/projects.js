@@ -40,4 +40,13 @@ module.exports = {
       )
       .then((dbRes) => res.status(200).send("Success"));
   },
+
+  deleteProject: (req, res) => {
+    const { id } = req.params
+    sequelize.query(`
+    DELETE FROM projects
+    WHERE id = ${id}
+    `)
+    res.status(200).send("Delete success")
+  }
 };

@@ -4,9 +4,11 @@ import ProjectContext from "../store/projectContext";
 
 import { IconContext } from "react-icons";
 import { HiOutlinePencil } from "react-icons/hi";
+import { BsTrash3 } from "react-icons/bs";
 
 import classes from "./SelectedProjectPage.module.css";
 import Button from "../components/FormButton";
+import { useNavigate } from "react-router-dom";
 // import { redirect } from "react-router-dom";
 
 const SelectedProject = () => {
@@ -21,6 +23,7 @@ const SelectedProject = () => {
   const [editedSeconds, setEditedSeconds] = useState();
 
   const [timerIsRunning, setTimerIsRunning] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     let timer;
@@ -85,6 +88,14 @@ const SelectedProject = () => {
     })
   };
 
+  const projectDeleteHandler = () => {
+    axios
+    .delete(`http://localhost:4000/project-delete/${selectedProject.id}`)
+    .then(res => {
+      navigate('/dash')
+    })
+  }
+
   return (
     <div>
       <h1>{selectedProject.name}</h1>
@@ -117,6 +128,9 @@ const SelectedProject = () => {
               />
             )}
           </div>
+          <IconContext.Provider value={{ color: "#FF5722" }}>
+              <BsTrash3 onClick={projectDeleteHandler} />
+            </IconContext.Provider>
         </div>
       ) : (
         <div>

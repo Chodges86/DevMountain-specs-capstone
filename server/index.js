@@ -3,7 +3,7 @@ const express = require('express')
 const cors = require('cors')
 
 const { register, login, checkIsLoggedIn, getUser } = require('./controllers/auth')
-const { getAllProjects, updateProject, addProject } = require('./controllers/projects')
+const { getAllProjects, updateProject, addProject, deleteProject } = require('./controllers/projects')
 
 const { PORT } = process.env; 
 
@@ -19,6 +19,7 @@ app.get('/get-user/:id', getUser)
 app.get('/get-all-projects/:id', getAllProjects)
 app.put('/project/:id', updateProject)
 app.post('/project', addProject)
+app.delete('/project-delete/:id', deleteProject)
 
 
 app.listen(PORT, () => console.log(`Server running on ${PORT}`))

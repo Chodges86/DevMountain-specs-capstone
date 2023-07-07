@@ -10,51 +10,6 @@ import ProjectContext from "../store/projectContext";
 import Input from "../components/FormInput";
 import Button from "../components/FormButton";
 
-// const DUMMY_PROJECTS = [
-//   {
-//     projectName: "Project Title",
-//     companyName: "Company Name",
-//     lastDate: "6/9/2023",
-//     hours: "15:23:30",
-//     id: 1,
-//   },
-//   {
-//     projectName: "Project Title",
-//     companyName: "Company Name",
-//     lastDate: "6/9/2023",
-//     hours: "15:23:30",
-//     id: 2,
-//   },
-//   {
-//     projectName: "Project Title",
-//     companyName: "Company Name",
-//     lastDate: "6/9/2023",
-//     hours: "15:23:30",
-//     id: 3,
-//   },
-//   {
-//     projectName: "Project Title",
-//     companyName: "Company Name",
-//     lastDate: "6/9/2023",
-//     hours: "15:23:30",
-//     id: 4,
-//   },
-//   {
-//     projectName: "Project Title",
-//     companyName: "Company Name",
-//     lastDate: "6/9/2023",
-//     hours: "15:23:30",
-//     id: 5,
-//   },
-//   {
-//     projectName: "Project Title",
-//     companyName: "Company Name",
-//     lastDate: "6/9/2023",
-//     hours: "15:23:30",
-//     id: 6,
-//   },
-// ];
-
 const Dashboard = () => {
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
@@ -63,26 +18,34 @@ const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const [newProjectTitle, setNewProjectTitle] = useState("");
   const [newCustomerName, setNewCustomerName] = useState("");
+  const [timeDidUpdate, setTimeDidUpdate] = useState(false)
 
   const { isAddingNew } = projectCtx;
 
-  // console.log(document.cookie)
-
-  // useEffect(() => {
-  //   axios
-  //   .get("http://localhost:4000/check-login")
-  //   .then(res => console.log(res.data))
-  // },[])
+  useEffect(() => {
+    const prevSelectedProj = localStorage.getItem("projId");
+    if (prevSelectedProj) {
+      const body = {
+        seconds: localStorage.getItem('seconds'),
+        minutes: localStorage.getItem('minutes'),
+        hours: localStorage.getItem('hours')
+      }
+      axios
+        .put(`http://localhost:4000/project/${prevSelectedProj}`, body)
+        .then(res => {
+          if(res.status === 200) {
+            localStorage.clear()
+            setTimeDidUpdate(true)
+          }
+        })
+    }
+  }, [timeDidUpdate]);
 
   useEffect(() => {
     if (isLoggedIn && !isAddingNew) {
       axios
         .get(`http://localhost:4000/get-all-projects/${authCtx.userId}`)
         .then((res) => {
-          // const dates = res.data.sort((a,b) => {
-          //   Date.parse(b.last_date) - Date.parse(a.last_date)
-          // })
-          // console.log(dates)
           setProjects(res.data);
         })
         .catch((err) => console.log(err));
@@ -105,9 +68,8 @@ const Dashboard = () => {
     axios
       .post(`http://localhost:4000/project`, body)
       .then((res) => {
-        console.log(res.data);
         projectCtx.setIsAddingNew(false);
-        projectCtx.setShowNewProjBtn(true)
+        projectCtx.setShowNewProjBtn(true);
       })
       .catch((err) => console.log(err));
   };
@@ -160,8 +122,8 @@ const Dashboard = () => {
               color="white"
               type="button"
               onClick={() => {
-                projectCtx.setIsAddingNew(false)
-                projectCtx.setShowNewProjBtn(true)
+                projectCtx.setIsAddingNew(false);
+                projectCtx.setShowNewProjBtn(true);
               }}
             ></Button>
             <Button name="Add" color="blue" type="submit"></Button>

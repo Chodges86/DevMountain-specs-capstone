@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 // import { redirect } from "react-router-dom";
 
 const SelectedProject = () => {
+  const navigate = useNavigate();
   const projCtx = useContext(ProjectContext);
   const { selectedProject } = projCtx;
   const [seconds, setSeconds] = useState(selectedProject.seconds);
@@ -21,9 +22,8 @@ const SelectedProject = () => {
   const [editedHours, setEditedHours] = useState();
   const [editedMinutes, setEditedMinutes] = useState();
   const [editedSeconds, setEditedSeconds] = useState();
-
   const [timerIsRunning, setTimerIsRunning] = useState(false);
-  const navigate = useNavigate()
+
 
   useEffect(() => {
     let timer;
@@ -40,8 +40,12 @@ const SelectedProject = () => {
       setMinutes(0);
       setHours((prev) => prev + 1);
     }
+    localStorage.setItem("seconds", seconds)
+    localStorage.setItem("minutes", minutes)
+    localStorage.setItem("hours", hours)
+
     return () => clearInterval(timer);
-  }, [timerIsRunning, minutes, seconds]);
+  }, [timerIsRunning, hours, minutes, seconds]);
 
   const stopHandler = () => {
     console.log("Stop");
@@ -64,13 +68,13 @@ const SelectedProject = () => {
     setIsEditing(true);
   };
   const editHourHandler = (e) => {
-    setEditedHours(e.target.value);
+    setEditedHours(+e.target.value);
   };
   const editMinHandler = (e) => {
-    setEditedMinutes(e.target.value);
+    setEditedMinutes(+e.target.value);
   };
   const editSecHandler = (e) => {
-    setEditedSeconds(e.target.value);
+    setEditedSeconds(+e.target.value);
   };
 
   const saveEditHandler = (e) => {
@@ -78,23 +82,25 @@ const SelectedProject = () => {
     const body = {
       seconds: editedSeconds,
       minutes: editedMinutes,
-      hours: editedHours
-    }
-    axios.put(`http://localhost:4000/project/${selectedProject.id}`, body).then(res => {
-      setHours(editedHours)
-      setMinutes(editedMinutes)
-      setSeconds(editedSeconds)
-      setIsEditing(false)
-    })
+      hours: editedHours,
+    };
+    axios
+      .put(`http://localhost:4000/project/${selectedProject.id}`, body)
+      .then((res) => {
+        setHours(editedHours);
+        setMinutes(editedMinutes);
+        setSeconds(editedSeconds);
+        setIsEditing(false);
+      });
   };
 
   const projectDeleteHandler = () => {
     axios
-    .delete(`http://localhost:4000/project-delete/${selectedProject.id}`)
-    .then(res => {
-      navigate('/dash')
-    })
-  }
+      .delete(`http://localhost:4000/project-delete/${selectedProject.id}`)
+      .then((res) => {
+        navigate("/dash");
+      });
+  };
 
   return (
     <div>
@@ -129,16 +135,30 @@ const SelectedProject = () => {
             )}
           </div>
           <IconContext.Provider value={{ color: "#FF5722" }}>
-              <BsTrash3 onClick={projectDeleteHandler} />
-            </IconContext.Provider>
+            <BsTrash3 onClick={projectDeleteHandler} />
+          </IconContext.Provider>
         </div>
       ) : (
         <div>
           <form className={classes.form}>
             <div>
-              <input type="number" onChange={editHourHandler} />:
-              <input type="number" onChange={editMinHandler} />:
-              <input type="number" onChange={editSecHandler} />
+              <input
+                type="number"
+                onChange={editHourHandler}
+                placeholder={hours}
+              />
+              :
+              <input
+                type="number"
+                onChange={editMinHandler}
+                placeholder={minutes}
+              />
+              :
+              <input
+                type="number"
+                onChange={editSecHandler}
+                placeholder={seconds}
+              />
             </div>
             <Button
               name="Save"

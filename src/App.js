@@ -12,9 +12,11 @@ import Dashboard from './pages/Dashboard'
 import SelectedProject from './pages/SelectedProjectPage';
 
 import AuthContext from './store/authContext';
+import ProjectContext from './store/projectContext';
 
 function App() {
   const authCtx = useContext(AuthContext)  
+  const { selectedProject } = useContext(ProjectContext)
 
   useEffect(() => {
     if (Cookies.get("bth_uid")) {
@@ -35,7 +37,7 @@ function App() {
         <Route index element={!authCtx.isLoggedIn ? <LoginPage/> : <Dashboard/>}/>
         <Route path='register' element={<Register/>}/>
         <Route path='dash' element={<Dashboard/>}/>
-        <Route path='project' element={<SelectedProject/>}/>
+        <Route path='project' element={selectedProject ? <SelectedProject/> : <Dashboard/>}/>
         </Routes>
     </div>
   );

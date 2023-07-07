@@ -17,8 +17,8 @@ const ProjectCard = (props) => {
   },[didNavigate, navigate])
 
   const projectClickedHandler = () => {
-    console.log(props.id)
     projCtx.setProject(props)
+    localStorage.setItem('projId', props.id)
     setDidNavigate(true)
   }
 

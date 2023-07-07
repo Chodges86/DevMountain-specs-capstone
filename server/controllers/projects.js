@@ -13,6 +13,19 @@ module.exports = {
       });
   },
 
+  getProjectById: (req, res) => {
+    const { id } = req.params
+    console.log("getProjectById called")
+    sequelize.query(`
+    SELECT * FROM projects
+    WHERE id = ${id}
+    `)
+    .then(dbRes => {
+      console.log(dbRes[0][0])
+      res.status(200).send(dbRes[0][0])
+    })
+  },
+
   updateProject: (req, res) => {
     const { id } = req.params;
     const { seconds, minutes, hours } = req.body;

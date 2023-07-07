@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { IconContext } from "react-icons";
 import { BsPlusLg } from "react-icons/bs";
+import { IoMdArrowBack } from "react-icons/io";
 import Cookies from "js-cookie";
 
 import AuthContext from "../store/authContext";
@@ -16,14 +17,14 @@ const Header = () => {
   const projectCtx = useContext(ProjectContext);
   const isLoggedIn = authCtx.isLoggedIn;
   const showNewProjBtn = projectCtx.showNewProjBtn;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const logoutHandler = () => {
     authCtx.setIsLoggedIn(false);
     authCtx.setUserId(null);
     authCtx.setFirstName(null);
-    Cookies.remove('bth_uid')
-    navigate('/')
+    Cookies.remove("bth_uid");
+    navigate("/");
   };
 
   const newProjectHandler = () => {
@@ -45,9 +46,14 @@ const Header = () => {
       {isLoggedIn && showNewProjBtn && (
         <div className={classes.btmHeader}>
           <IconContext.Provider value={{ color: "#2D4059", size: "2em" }}>
+            <IoMdArrowBack />
+          </IconContext.Provider>
+          <div className={classes.addNew}>
+            <IconContext.Provider value={{ color: "#2D4059", size: "2em" }}>
             <BsPlusLg />
           </IconContext.Provider>
           <h1 onClick={newProjectHandler}>New Project</h1>
+          </div>
         </div>
       )}
     </>

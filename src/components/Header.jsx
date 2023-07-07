@@ -17,6 +17,7 @@ const Header = () => {
   const projectCtx = useContext(ProjectContext);
   const isLoggedIn = authCtx.isLoggedIn;
   const showNewProjBtn = projectCtx.showNewProjBtn;
+  const showBackBtn = projectCtx.showBackBtn;
   const navigate = useNavigate();
 
   const logoutHandler = () => {
@@ -43,17 +44,21 @@ const Header = () => {
           </div>
         )}
       </div>
-      {isLoggedIn && showNewProjBtn && (
+      {isLoggedIn && (
         <div className={classes.btmHeader}>
-          <IconContext.Provider value={{ color: "#2D4059", size: "2em" }}>
-            <IoMdArrowBack />
-          </IconContext.Provider>
-          <div className={classes.addNew}>
-            <IconContext.Provider value={{ color: "#2D4059", size: "2em" }}>
-            <BsPlusLg />
-          </IconContext.Provider>
-          <h1 onClick={newProjectHandler}>New Project</h1>
+          <div className={classes.backBtn}>
+            {showBackBtn && (
+              <IconContext.Provider value={{ color: "#2D4059", size: "2em" }}>
+                <IoMdArrowBack onClick={() => navigate(-1)}/>
+              </IconContext.Provider>
+            )}
           </div>
+          {showNewProjBtn && <div className={classes.addNew}>
+            <IconContext.Provider value={{ color: "#2D4059", size: "2em" }}>
+              <BsPlusLg onClick={newProjectHandler}/>
+            </IconContext.Provider>
+            <h1 onClick={newProjectHandler}>New Project</h1>
+          </div>}
         </div>
       )}
     </>

@@ -26,6 +26,8 @@ const SelectedProject = () => {
 
 
   useEffect(() => {
+    projCtx.setShowBackBtn(true)
+    projCtx.setShowNewProjBtn(false)
     let timer;
     if (timerIsRunning) {
       timer = setInterval(() => {
@@ -45,7 +47,7 @@ const SelectedProject = () => {
     localStorage.setItem("hours", hours)
 
     return () => clearInterval(timer);
-  }, [timerIsRunning, hours, minutes, seconds]);
+  }, [timerIsRunning, hours, minutes, seconds, projCtx]);
 
   const stopHandler = () => {
     console.log("Stop");

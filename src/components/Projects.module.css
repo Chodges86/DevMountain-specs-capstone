@@ -1,0 +1,30 @@
+.container {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 80%;
+    margin-top: 100px;
+  }
+
+  @media screen and (max-width: 920px) {
+    .container {
+      width: 90%;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  
+  @media screen and (max-width: 540px) {
+    .container {
+      margin-top: 35px;
+      width: 90%;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  @media screen and (max-width: 300px) {
+    .container {
+      margin-top: 35px;
+      width: 100%;
+      grid-template-columns: 1fr 1fr;
+    }
+  }

@@ -3,7 +3,7 @@
   border-radius: 15px;
   box-shadow: 2px 5px 15px 3px #272727;
   position: fixed;
-  top: 40%;
+  top: 30%;
   left: 30%;
   width: 40%;
   z-index: 100;
@@ -21,9 +21,18 @@
 }
 
 .warning h2 {
+    margin: 5px;
 }
 
 .warning h3 {
   font-family: "Catamaran", sans-serif;
   font-size: 35px;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+.warning h4 {
+  font-family: "Catamaran", sans-serif;
+  font-size: 20px;
+  margin-bottom: 0px;
 }

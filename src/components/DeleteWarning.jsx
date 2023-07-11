@@ -25,8 +25,13 @@ const DeleteWarning = (props) => {
   return (
     <div className={classes.backdrop}>
     <div className={classes.warning}>
-      <h2>Are you sure you want to delete:</h2>
+      <h2>Are you sure you want to delete this project:</h2>
+      <h4>Title:</h4>
       <h3>{selectedProject.name}</h3>
+      <h4>Current hours spent:</h4>
+      <h3>{selectedProject.hours}:{selectedProject.minutes}:{selectedProject.seconds}</h3>
+      <h4>Last Date worked on:</h4>
+      <h3>{selectedProject.lastDate}</h3>
       <Button
         name="Cancel"
         color="blue"

@@ -9,7 +9,7 @@ import { BsTrash3 } from "react-icons/bs";
 import classes from "./SelectedProjectPage.module.css";
 import Button from "../components/FormButton";
 import { useNavigate } from "react-router-dom";
-// import { redirect } from "react-router-dom";
+import DeleteWarning from "../components/DeleteWarning";
 
 const SelectedProject = () => {
   const navigate = useNavigate();
@@ -19,10 +19,11 @@ const SelectedProject = () => {
   const [minutes, setMinutes] = useState(selectedProject.minutes);
   const [hours, setHours] = useState(selectedProject.hours);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedHours, setEditedHours] = useState();
-  const [editedMinutes, setEditedMinutes] = useState();
-  const [editedSeconds, setEditedSeconds] = useState();
+  const [editedHours, setEditedHours] = useState(hours);
+  const [editedMinutes, setEditedMinutes] = useState(minutes);
+  const [editedSeconds, setEditedSeconds] = useState(seconds);
   const [timerIsRunning, setTimerIsRunning] = useState(false);
+  
 
 
   useEffect(() => {
@@ -61,12 +62,10 @@ const SelectedProject = () => {
   };
 
   const startHandler = () => {
-    console.log("Start");
     setTimerIsRunning(true);
   };
 
   const editButtonClicked = () => {
-    console.log("Edit Time");
     setIsEditing(true);
   };
   const editHourHandler = (e) => {
@@ -97,15 +96,13 @@ const SelectedProject = () => {
   };
 
   const projectDeleteHandler = () => {
-    axios
-      .delete(`http://localhost:4000/project-delete/${selectedProject.id}`)
-      .then((res) => {
-        navigate("/dash");
-      });
+    projCtx.setShowDeleteWarning(true)
+   
   };
 
   return (
     <div>
+      {projCtx.showDeleteWarning && <DeleteWarning />}
       <h1>{selectedProject.name}</h1>
       <h2>{selectedProject.companyName}</h2>
       {!isEditing ? (

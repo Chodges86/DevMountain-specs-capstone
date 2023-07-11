@@ -36,7 +36,7 @@ function App() {
       <Routes>
         <Route index element={!authCtx.isLoggedIn ? <LoginPage/> : <Dashboard/>}/>
         <Route path='register' element={<Register/>}/>
-        <Route path='dash' element={<Dashboard/>}/>
+        <Route path='dash' element={authCtx.isLoggedIn ? <Dashboard/>: <LoginPage/>}/>
         <Route path='project' element={selectedProject ? <SelectedProject/> : <Dashboard/>}/>
         </Routes>
     </div>

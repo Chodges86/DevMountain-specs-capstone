@@ -12,6 +12,8 @@ export const ProjectContextProvider = (props) => {
     const [isAddingNew, setIsAddingNew] = useState(false)
     const [showNewProjBtn, setShowNewProjBtn] = useState(true)
     const [showBackBtn, setShowBackBtn] = useState(false)
+    const [showDeleteWarning, setShowDeleteWarning] = useState(false)
+    const [didSelectDelete, setDidSelectDelete] = useState(false)
 
     const setProject = (project) => {
         console.log("setProject called")
@@ -26,7 +28,11 @@ export const ProjectContextProvider = (props) => {
         showNewProjBtn,
         setShowNewProjBtn,
         showBackBtn,
-        setShowBackBtn
+        setShowBackBtn,
+        showDeleteWarning,
+        setShowDeleteWarning,
+        didSelectDelete,
+        setDidSelectDelete
     }
 
     return <ProjectContext.Provider value={contextValue}>

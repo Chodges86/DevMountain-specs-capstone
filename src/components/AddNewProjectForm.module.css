@@ -16,6 +16,10 @@
   justify-content: center;
 }
 
+.error {
+    color: red;
+}
+
 @media screen and (max-width: 920px) {
   .form {
     justify-content: center;

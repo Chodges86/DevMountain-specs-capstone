@@ -12,9 +12,20 @@ const AddNewProjectForm = (props) => {
   const projectCtx = useContext(ProjectContext);
   const [newProjectTitle, setNewProjectTitle] = useState("");
   const [newCustomerName, setNewCustomerName] = useState("");
+  const [error, setError] = useState(null);
+
+  function isLegal(string) {
+    if (string.includes("'") || string.includes('"')) {
+      return false;
+    } else {
+      setError(null);
+      return true;
+    }
+  }
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     const body = {
       userId: authCtx.userId,
       projectTitle: newProjectTitle,
@@ -36,14 +47,22 @@ const AddNewProjectForm = (props) => {
           name="Project Title"
           id="project_title"
           type="text"
-          handler={(value) => setNewProjectTitle(value)}
+          handler={(value) => {
+            isLegal(value)
+              ? setNewProjectTitle(value)
+              : setError(`Cannot use ( ${value[value.length - 1]} ) char`);
+          }}
           value={newProjectTitle}
         ></Input>
         <Input
           name="Customer"
           id="customer-name"
           type="text"
-          handler={(value) => setNewCustomerName(value)}
+          handler={(value) => {
+            isLegal(value)
+              ? setNewCustomerName(value)
+              : setError(`Cannot use ( ${value[value.length - 1]} ) char`);
+          }}
           value={newCustomerName}
         ></Input>
         <div className={classes.buttons}>
@@ -59,6 +78,7 @@ const AddNewProjectForm = (props) => {
           <Button name="Add" color="blue" type="submit"></Button>
         </div>
       </form>
+      {error && <div className={classes.error}>{error}</div>}
     </div>
   );
 };

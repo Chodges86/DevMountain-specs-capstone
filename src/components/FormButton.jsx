@@ -11,11 +11,12 @@ const Button = (props) => {
     fontColor = "#FFFFFF";
   } else if (props.color === "white") {
     background = "#FFFFFF";
-    fontColor = "#2D4059";
+    fontColor = props.fontColor ? props.fontColor : "#2D4059";
   } else {
     background = props.color
     fontColor = props.fontColor
   }
+
 
   return (
     <button

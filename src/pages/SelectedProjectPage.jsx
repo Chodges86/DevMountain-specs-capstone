@@ -33,7 +33,7 @@ const SelectedProject = () => {
     if (timerIsRunning) {
       timer = setInterval(() => {
         setSeconds((prev) => prev + 1);
-      }, 1);
+      }, 1000);
     }
     if (seconds === 60) {
       setSeconds(0);

@@ -1,60 +1,71 @@
 .header {
-    background-color: #2D4059;
-    height: 125px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #2d4059;
+  height: 125px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .header img {
-    height: 125px;
-    width: auto;
-    margin: 20px;
+  height: 125px;
+  width: auto;
+  margin: 20px;
 }
 
 .userReadOut {
-    font-family: 'Catamaran', sans-serif;
-    margin-inline: 20px;
-    margin-block: 0;
-    font-size: 25px;
-    color: white;
+  font-family: "Catamaran", sans-serif;
+  margin-inline: 20px;
+  margin-block: 0;
+  font-size: 25px;
+  color: white;
 }
 
 .userReadOut h1 {
-    font-size: 30px;
-    margin-block: 0;
+  font-size: 30px;
+  margin-block: 0;
 }
 .userReadOut h2 {
-    font-size: 20px;
-    margin-block: 0;
-    cursor: default;
+  font-size: 20px;
+  margin-block: 0;
+  cursor: default;
 }
 
 .btmHeader {
-    background-color: #EEEEEE;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .btmHeader h1 {
-    font-family: 'Catamaran', sans-serif;
-    margin-right: 10px;
-    margin-block: 0;
-    font-size: 25px;
-    color: #2D4059;
-    cursor: default;
+  font-family: "Catamaran", sans-serif;
+  margin-right: 10px;
+  margin-block: 0;
+  font-size: 25px;
+  color: #2d4059;
+  cursor: default;
 }
 
 .addNew {
-    display: flex;
+  display: flex;
 }
 
-@media screen and (max-width: 900px){
+@media screen and (max-width: 400px) {
+  .btmHeader h1 {
+    font-size: 18px;
+  }
 }
 
-@media screen and (max-width: 400px){
-    .btmHeader h1 {
-        font-size: 18px;
-    }
+@media screen and (max-width: 280px) {
+  .header img {
+    height: 85px;
+    width: auto;
+    margin: 20px;
+  }
+  .userReadOut h1 {
+    font-size: 20px;
+  }
+  .userReadOut h2 {
+    font-size: 15px;
+  }
 }

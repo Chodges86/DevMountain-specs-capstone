@@ -63,39 +63,52 @@ const LoginPage = () => {
   };
 
   return (
-    <div className={classes.login}>
-      <form className={classes.form} onSubmit={submitHandler}>
-        <Input
-          name="Email"
-          id="username"
-          type="text"
-          handler={setEmailHandler}
-          value={email}
-        />
-        <Input
-          name="Password"
-          id="password"
-          type="password"
-          handler={passwordHandler}
-          value={password}
-        />
-        <div>
-          <Button
-            name="Register"
-            color="white"
-            type="button"
-            onClick={navigateToRegister}
+    <div className={classes.container}>
+      <div className={classes.welcome}>
+        <h2>Welcome to By the Hour</h2>
+        <p>
+          Login or Register and start tracking the time spent on your
+          freelancing projects. Just create a new project and then click start
+          on the timer when you start working on your your freelancing project
+          and then come back and click stop when you finish. By the Hour will
+          keep track of the time you spend working on your projects and make by
+          the hour billing a breeze!
+        </p>
+      </div>
+      <div className={classes.login}>
+        <form className={classes.form} onSubmit={submitHandler}>
+          <Input
+            name="Email"
+            id="username"
+            type="text"
+            handler={setEmailHandler}
+            value={email}
           />
-          <Button
-            name={
-              isLoading ? <ImSpinner3 className={classes.spinner} /> : "Login"
-            }
-            color="blue"
-            type="submit"
+          <Input
+            name="Password"
+            id="password"
+            type="password"
+            handler={passwordHandler}
+            value={password}
           />
-        </div>
-        {loginError && <p className={classes.error}>{loginError}</p>}
-      </form>
+          <div>
+            <Button
+              name="Register"
+              color="white"
+              type="button"
+              onClick={navigateToRegister}
+            />
+            <Button
+              name={
+                isLoading ? <ImSpinner3 className={classes.spinner} /> : "Login"
+              }
+              color="blue"
+              type="submit"
+            />
+          </div>
+          {loginError && <p className={classes.error}>{loginError}</p>}
+        </form>
+      </div>
     </div>
   );
 };

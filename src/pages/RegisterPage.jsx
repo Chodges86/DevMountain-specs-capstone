@@ -38,6 +38,10 @@ const Register = () => {
     setLastName(lname);
   };
 
+  const navigateToLogin = () => {
+    navigate("/");
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     setIsLoading(true)
@@ -107,6 +111,12 @@ const Register = () => {
           value={lastName}
         />
         <div>
+          <Button
+            name="Cancel"
+            color="white"
+            type="button"
+            onClick={navigateToLogin}
+          />
           <Button
             name={isLoading ? <ImSpinner3 className={classes.spinner} /> : "Register"}
             color="blue"

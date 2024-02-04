@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "./../.env" });
+require('dotenv').config()
 const { CONNECTION_STRING } = process.env;
 
 
